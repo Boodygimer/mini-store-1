@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.0.1" />
+  <title>متجر السريع</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container">
+        <a class="navbar-brand" href="#">متجر السريع</a>
+        <div class="d-flex align-items-center gap-3">
+          <div id="authSection">
+            <button
+              class="btn btn-outline-light btn-sm"
+              data-bs-toggle="modal"
+              data-bs-target="#loginModal"
+            >
+              تسجيل دخول
+            </button>
+          </div>
+          <button
+            class="btn btn-warning position-relative"
+            data-bs-toggle="modal"
+            data-bs-target="#cartModal"
+          >
+            🛒 السلة
+            <span
+              class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+              id="cartCount"
+              >0</span
+            >
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container my-4 text-center">
+      <button class="btn btn-secondary m-1" onclick="filterProducts('all')">
+        الكل
+      </button>
+      <button
+        class="btn btn-outline-secondary m-1"
+        onclick="filterProducts('electronics')"
+      >
+        إلكترونيات
+      </button>
+      <button
+        class="btn btn-outline-secondary m-1"
+        onclick="filterProducts('fashion')"
+      >
+        ملابس
+      </button>
+    </div>
+
+    <div class="container">
+      <div class="row" id="productsContainer"></div>
+    </div>
+
+    <div class="modal fade" id="loginModal" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">تسجيل الدخول</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <input
+              type="email"
+              class="form-control mb-2"
+              placeholder="البريد الإلكتروني"
+            />
+            <input
+              type="password"
+              class="form-control mb-2"
+              placeholder="كلمة المرور"
+            />
+            <button class="btn btn-primary w-100" onclick="fakeLogin()">
+              دخول
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="cartModal" tabindex="-1">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">سلة الشراء</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>المنتج</th>
+                  <th>السعر</th>
+                  <th>الكمية</th>
+                  <th>إجراء</th>
+                </tr>
+              </thead>
+              <tbody id="cartItems"></tbody>
+            </table>
+            <div class="d-flex justify-content-between align-items-center mt-3">
+              <h5>الإجمالي: <span id="totalPrice">0</span> جنيه</h5>
+            </div>
+
+            <hr />
+            <h6>تفاصيل الشحن (الدفع عند الاستلام)</h6>
+            <form id="checkoutForm" onsubmit="processCheckout(event)">
+              <input
+                type="text"
+                class="form-control mb-2"
+                placeholder="الاسم بالكامل"
+                required
+              />
+              <input
+                type="tel"
+                class="form-control mb-2"
+                placeholder="رقم الهاتف"
+                required
+              />
+              <textarea
+                class="form-control mb-2"
+                placeholder="العنوان بالتفصيل"
+                required
+              ></textarea>
+              <div class="alert alert-info">
+                وسيلة الدفع: كاش عند الاستلام (Cash on Delivery)
+              </div>
+              <button type="submit" class="btn btn-success w-100">
+                تأكيد الطلب
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+
+    <link rel="stylesheet" href="style.css" />
+
+    <style></style>
+  </body>
+</html>
